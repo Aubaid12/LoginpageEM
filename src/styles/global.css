@@ -1,0 +1,31 @@
+/* Reset & Clean Base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-bg-root);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+#root {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}

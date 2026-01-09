@@ -1,0 +1,66 @@
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    position: relative;
+}
+
+.input-label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.input-field {
+    appearance: none;
+    background-color: var(--color-bg-input);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: var(--font-size-md);
+    color: var(--color-text-primary);
+    /* Use shadow for focus ring to avoid layout shift and match modern standards */
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--color-border-active);
+    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+    /* Brand aligned focus ring */
+}
+
+/* Error State */
+.input-group.has-error .input-label {
+    color: var(--color-error);
+}
+
+.input-group.has-error .input-field {
+    border-color: var(--color-error);
+}
+
+.input-group.has-error .input-field:focus {
+    box-shadow: 0 0 0 3px rgba(248, 81, 73, 0.3);
+}
+
+.input-error {
+    font-size: var(--font-size-sm);
+    color: var(--color-error);
+    margin-top: var(--space-1);
+    /* Slide down animation for error */
+    animation: slide-down 200ms ease-out;
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
