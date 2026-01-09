@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# Evil Martians Login Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-quality, accessible, and zero-dependency Login SPA built for the Evil Martians Frontend Engineer application.
 
-Currently, two official plugins are available:
+## 🚀 Features
+- **Zero UI Libraries**: Custom design system using Vanilla CSS variables and CSS Modules.
+- **Mock Fetch**: A realistic API simulation (`src/api/mockFetch.ts`) with network latency and random error simulation.
+- **Accessibility**: Full a11y support including `aria-invalid`, `aria-busy`, focus management, and semantic HTML.
+- **Architecture**: Scalable feature-based folder structure with React + TypeScript.
+- **Tests**: Comprehensive unit tests using Vitest and React Testing Library.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Quick Start
 
-## React Compiler
+1.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
+2.  **Start Development Server**:
+    ```bash
+    npm run dev
+    ```
+3.  **Run Tests**:
+    ```bash
+    npm run test
+    ```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 How to Deploy to GitHub Pages
 
-## Expanding the ESLint configuration
+I have configured the project for easy deployment.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Create Repository
+Create a new empty repository on GitHub named `evil-martians-login`.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 2. Push Code
+Run these commands in your terminal (inside this folder):
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/[YOUR_USERNAME]/evil-martians-login.git
+git push -u origin main
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+*(Replace `[YOUR_USERNAME]` with your actual GitHub username)*
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 3. Deploy
+Once the code is on GitHub, run:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run deploy
 ```
+
+This command will:
+1. Build the project.
+2. Push the build to a `gh-pages` branch on your repo.
+3. Your live site will be available at: `https://[YOUR_USERNAME].github.io/evil-martians-login/`
+
+## 📧 Email Application Text
+The draft for the email application is located in `email_draft.md` in the root of this project (if I copied it there, otherwise check the artifacts).
