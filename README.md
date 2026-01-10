@@ -1,5 +1,4 @@
-# Evil Martians Login Assignment
-
+# Login page
 A high-quality, accessible, and zero-dependency Login SPA built for the Evil Martians Frontend Engineer application.
 
 ## 🚀 Features
