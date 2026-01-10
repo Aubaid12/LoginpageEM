@@ -1,61 +1,95 @@
 # Evil Martians Login Assignment
 
+> **Live Demo:** [Insert Your GitHub Pages Link Here]
+
 A high-quality, accessible, and zero-dependency Login SPA built for the Evil Martians Frontend Engineer application.
 
-## 🚀 Features
-- **Zero UI Libraries**: Custom design system using Vanilla CSS variables and CSS Modules.
-- **Mock Fetch**: A realistic API simulation (`src/api/mockFetch.ts`) with network latency and random error simulation.
-- **Accessibility**: Full a11y support including `aria-invalid`, `aria-busy`, focus management, and semantic HTML.
-- **Architecture**: Scalable feature-based folder structure with React + TypeScript.
-- **Tests**: Comprehensive unit tests using Vitest and React Testing Library.
+## 🎯 Project Goals & "Staff Engineer" Approach
+This project was built with a focus on **fundamentals over frameworks**, mimicking a constraint-heavy environment often found in high-stakes dev tools.
 
-## 🛠 Quick Start
+*   **Zero UI Libraries**: No Bootstrap, Material UI, or Tailwind. Just pure, semantic HTML and custom CSS variables.
+*   **Accessibility First**: Built with `aria-invalid`, `aria-busy` states, correct labeling, and keyboard navigation support.
+*   **Mocked Backend**: A robust `mockFetch` layer that simulates network latency (500ms-1.5s) and random 5% network failures to demonstrate error handling.
+*   **Architecture**: Feature-based folder structure designed for scalability, not just a single-file demo.
 
-1.  **Install Dependencies**:
+## 🛠 Tech Stack
+*   **Core**: React 19, TypeScript
+*   **Styling**: Vanilla CSS (Variables, CSS Modules approach)
+*   **Testing**: Vitest, React Testing Library
+*   **Tooling**: Vite
+
+## � Local Development
+
+1.  **Install Dependencies**
     ```bash
     npm install
     ```
-2.  **Start Development Server**:
+
+2.  **Start Dev Server**
     ```bash
     npm run dev
     ```
-3.  **Run Tests**:
+
+3.  **Run Tests**
     ```bash
     npm run test
     ```
 
-## 📦 How to Deploy to GitHub Pages
+## 📦 Deployment (GitHub Pages)
 
-I have configured the project for easy deployment.
+This project is configured for one-command deployment.
 
-### 1. Create Repository
-Create a new empty repository on GitHub named `evil-martians-login`.
+1.  **Push to GitHub**:
+    ```bash
+    git push origin main
+    ```
 
-### 2. Push Code
-Run these commands in your terminal (inside this folder):
+2.  **Deploy**:
+    ```bash
+    npm run deploy
+    ```
 
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/[YOUR_USERNAME]/evil-martians-login.git
-git push -u origin main
-```
+---
 
-*(Replace `[YOUR_USERNAME]` with your actual GitHub username)*
+## 📝 Application Email Draft
+*Copy and paste the section below for your email to `obey-frontend@evilmartians.com`.*
 
-### 3. Deploy
-Once the code is on GitHub, run:
+***
 
-```bash
-npm run deploy
-```
+**Subject:** [Your Full Name] - Frontend Engineer Application
 
-This command will:
-1. Build the project.
-2. Push the build to a `gh-pages` branch on your repo.
-3. Your live site will be available at: `https://[YOUR_USERNAME].github.io/evil-martians-login/`
+Hi Evil Martians Team,
 
-## 📧 Email Application Text
-The draft for the email application is located in `email_draft.md` in the root of this project (if I copied it there, otherwise check the artifacts).
+Here is my submission for the Frontend Engineer position.
+
+**Login Form SPA**
+- **Live Demo:** [Insert GitHub Pages Link Here]
+- **Source Code:** [Insert GitHub Repo Link Here]
+
+**Approach:**
+I built this SPA from scratch using React and TypeScript, without any UI libraries. I focused on:
+- **Accessibility:** Using semantic HTML, `aria-invalid` states, and keyboard navigation support.
+- **UX:** Smooth animations, clear error feedback, and loading states.
+- **Architecture:** Clean component separation (`LoginForm`, `Input`, `Button`) and a mock API layer (`mockFetch`) that simulates latency and network errors.
+- **Design:** A custom "Martian" theme using CSS variables and glassmorphism.
+
+**About Me**
+I am a [Your Role, e.g., Senior Frontend Engineer] with a passion for building robust developer tools. At [Previous Company], I led the migration of our core dashboard to a micro-frontend architecture, reducing build times by 40% and improving team velocity.
+
+**Consultancy Story**
+In a previous role/freelance project for a fintech client, I was tasked with "revamping the user settings". The requirements were vague. Instead of coding immediately, I:
+1.  Interviewed the stakeholders to understand the core pain points (compliance data was hard to find).
+2.  Proposed a phased approach: first fixing the information architecture, then the visual refresh.
+3.  Managed the scope by pushing back on "nice-to-have" animations that would delay the MVP.
+Result: We shipped the compliance module 2 weeks early, directly impacting their ability to launch in a new market.
+
+**Logistics**
+- **Current Location:** [Your City, Country]
+- **Relocation:** Open to relocating to Portugal (or Remote).
+
+**Bonus**
+- [Link to Open Source PR/Project]
+- [Link to Technical Article/Talk]
+
+Best regards,
+[Your Name]
