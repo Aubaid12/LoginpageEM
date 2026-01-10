@@ -10,15 +10,19 @@ interface JoinFormProps {
 
 export const JoinForm: React.FC<JoinFormProps> = ({ onLoginClick }) => {
     const [email, setEmail] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [country, setCountry] = useState('US');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [errors, setErrors] = useState<{ email?: string; password?: string; form?: string }>({});
+    const [errors, setErrors] = useState<{ email?: string; fullName?: string; country?: string; password?: string; form?: string }>({});
     const [success, setSuccess] = useState(false);
 
     const validate = () => {
         const newErrors: typeof errors = {};
         if (!email) newErrors.email = 'Email is required';
         else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Please enter a valid email address';
+
+        if (!fullName) newErrors.fullName = 'Full name is required';
 
         if (!password) newErrors.password = 'Password is required';
         else if (password.length < 8) newErrors.password = 'Password must be at least 8 characters';
@@ -36,7 +40,7 @@ export const JoinForm: React.FC<JoinFormProps> = ({ onLoginClick }) => {
         try {
             const response = await mockFetch('/api/join', {
                 method: 'POST',
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, fullName, country, password }),
             });
 
             const data = await response.json();
@@ -90,7 +94,7 @@ export const JoinForm: React.FC<JoinFormProps> = ({ onLoginClick }) => {
 
             <div className="login-body">
                 <Input
-                    label="Email Address"
+                    label="Email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -99,6 +103,34 @@ export const JoinForm: React.FC<JoinFormProps> = ({ onLoginClick }) => {
                     autoComplete="email"
                     autoFocus
                 />
+
+                <Input
+                    label="Full name"
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Jane Doe"
+                    error={errors.fullName}
+                    autoComplete="name"
+                />
+
+                <div className={`input-group ${errors.country ? 'has-error' : ''}`}>
+                    <label htmlFor="country-select" className="input-label">Country</label>
+                    <select
+                        id="country-select"
+                        className="input-field"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        aria-invalid={!!errors.country}
+                        style={{ height: '48px', cursor: 'pointer' }} /* Match input height explicitly if needed */
+                    >
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="PT">Portugal</option>
+                        <option value="BR">Brazil</option>
+                    </select>
+                </div>
 
                 <Input
                     label="Password"
@@ -111,7 +143,7 @@ export const JoinForm: React.FC<JoinFormProps> = ({ onLoginClick }) => {
                 />
 
                 <Button type="submit" isLoading={isLoading}>
-                    Join
+                    Create account
                 </Button>
             </div>
 

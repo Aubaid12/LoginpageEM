@@ -70,7 +70,7 @@ export async function mockFetch(url: string, options: RequestInit): Promise<Mock
 
     if (url === '/api/join' && options.method === 'POST') {
         const body = JSON.parse(options.body as string);
-        const { email, password } = body;
+        const { email, fullName, password } = body;
 
         // Backend validation simulation
         if (!email || !email.includes('@')) {
@@ -78,6 +78,14 @@ export async function mockFetch(url: string, options: RequestInit): Promise<Mock
                 ok: false,
                 status: 400,
                 json: async () => ({ message: "Invalid email format" })
+            };
+        }
+
+        if (!fullName) {
+            return {
+                ok: false,
+                status: 400,
+                json: async () => ({ message: "Full name is required" })
             };
         }
 
@@ -97,7 +105,7 @@ export async function mockFetch(url: string, options: RequestInit): Promise<Mock
                 token: "fake-jwt-token-joined-789",
                 user: {
                     email,
-                    name: "New Recruit"
+                    name: fullName
                 }
             })
         };
