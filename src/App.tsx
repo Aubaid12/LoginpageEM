@@ -1,11 +1,19 @@
+import { useState } from 'react';
 import { LoginForm } from '@/features/auth/LoginForm';
-import './App.css'; // We'll keep a minimal App css or just inline/module
+import { JoinForm } from '@/features/auth/JoinForm';
+import './App.css';
 
 function App() {
+  const [view, setView] = useState<'login' | 'join'>('login');
+
   return (
     <main className="app-container">
       <div className="background-glow" />
-      <LoginForm />
+      {view === 'login' ? (
+        <LoginForm onJoinClick={() => setView('join')} />
+      ) : (
+        <JoinForm onLoginClick={() => setView('login')} />
+      )}
     </main>
   );
 }

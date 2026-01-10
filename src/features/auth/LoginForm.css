@@ -1,15 +1,18 @@
 .login-card {
     background-color: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: var(--space-8);
+    /* Clean shadow similar to Stripe's */
+    box-shadow: 0 15px 35px 0 rgba(60, 66, 87, 0.08), 0 5px 15px 0 rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    padding: 48px 40px;
     width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    max-width: 450px;
+    /* Slightly wider */
     animation: fade-in-up 400ms ease-out;
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
+    /* No border for this style, relying on shadow */
+    border: none;
 }
 
 .login-header {

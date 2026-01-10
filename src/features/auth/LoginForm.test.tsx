@@ -15,14 +15,14 @@ describe('LoginForm', () => {
     });
 
     it('renders login form with inputs', () => {
-        render(<LoginForm />);
+        render(<LoginForm onJoinClick={vi.fn()} />);
         expect(screen.getByLabelText(/Email Address/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
         expect(screen.getByRole('button', { name: /Sign In/i })).toBeInTheDocument();
     });
 
     it('shows validation errors for empty submission', async () => {
-        render(<LoginForm />);
+        render(<LoginForm onJoinClick={vi.fn()} />);
         fireEvent.click(screen.getByRole('button', { name: /Sign In/i }));
 
         expect(await screen.findByText(/Email is required/i)).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('LoginForm', () => {
             json: async () => ({ token: 'abc', user: { name: 'Test' } }),
         });
 
-        render(<LoginForm />);
+        render(<LoginForm onJoinClick={vi.fn()} />);
 
         // Fill form
         fireEvent.change(screen.getByLabelText(/Email Address/i), { target: { value: 'demo@evilmartians.com' } });

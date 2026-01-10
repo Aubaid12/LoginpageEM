@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { mockFetch } from '@/api/mockFetch';
-import './LoginForm.css';
+import './LoginForm.css'; // Reusing login styles
 
-interface LoginFormProps {
-    onJoinClick: () => void;
+interface JoinFormProps {
+    onLoginClick: () => void;
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({ onJoinClick }) => {
+export const JoinForm: React.FC<JoinFormProps> = ({ onLoginClick }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -21,15 +21,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onJoinClick }) => {
         else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Please enter a valid email address';
 
         if (!password) newErrors.password = 'Password is required';
-        else if (password.length < 8) newErrors.password = 'Password must be at least 8 characters'; // Reverting logic to simple check if needed, but original code was just checking existence. I'll stick to original logic but add prop.
-
-        // Wait, I should not change validation logic if not requested. Original was:
-        /*
-        if (!password) newErrors.password = 'Password is required';
-        */
-        // I will just copy original validation.
-
-        if (!password) newErrors.password = 'Password is required';
+        else if (password.length < 8) newErrors.password = 'Password must be at least 8 characters';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -42,7 +34,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onJoinClick }) => {
 
         setIsLoading(true);
         try {
-            const response = await mockFetch('/api/login', {
+            const response = await mockFetch('/api/join', {
                 method: 'POST',
                 body: JSON.stringify({ email, password }),
             });
@@ -52,13 +44,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onJoinClick }) => {
             if (response.ok) {
                 setSuccess(true);
             } else {
-                // Handle API errors
                 if (response.status === 400) {
-                    setErrors({ email: data.message });
-                } else if (response.status === 401) {
-                    setErrors({ form: data.message });
+                    // Handle both email and password errors simply
+                    if (data.message.includes('password')) {
+                        setErrors({ password: data.message });
+                    } else {
+                        setErrors({ email: data.message });
+                    }
                 } else {
-                    setErrors({ form: data.message || 'Something went wrong. Please try again.' });
+                    setErrors({ form: data.message || 'Something went wrong.' });
                 }
             }
         } catch (err: any) {
@@ -72,10 +66,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onJoinClick }) => {
         return (
             <div className="login-card success-state" aria-live="polite">
                 <div className="success-icon">🎉</div>
-                <h2>Welcome to Mars!</h2>
-                <p>You have successfully logged in.</p>
-                <Button onClick={() => setSuccess(false)} variant="secondary" style={{ marginTop: '1rem' }}>
-                    Sign Out
+                <h2>Welcome!</h2>
+                <p>Your account has been created.</p>
+                <Button onClick={onLoginClick} variant="secondary" style={{ marginTop: '1rem' }}>
+                    Go to Login
                 </Button>
             </div>
         );
@@ -84,8 +78,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onJoinClick }) => {
     return (
         <form className="login-card" onSubmit={handleSubmit} noValidate>
             <div className="login-header">
-                <h1>Login</h1>
-                <p>Enter your credentials to access the colony.</p>
+                <h1>Join</h1>
+                <p>Create your account.</p>
             </div>
 
             {errors.form && (
@@ -113,20 +107,16 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onJoinClick }) => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     error={errors.password}
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                 />
 
-                <div className="form-actions">
-                    {/* Forgot password could go here */}
-                </div>
-
                 <Button type="submit" isLoading={isLoading}>
-                    Sign In
+                    Join
                 </Button>
             </div>
 
             <div className="login-footer">
-                <p>Don't have an account? <a href="#" onClick={(e) => { e.preventDefault(); onJoinClick(); }}>Join</a></p>
+                <p>Already have an account? <a href="#" onClick={(e) => { e.preventDefault(); onLoginClick(); }}>Login</a></p>
             </div>
         </form>
     );

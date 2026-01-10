@@ -68,6 +68,41 @@ export async function mockFetch(url: string, options: RequestInit): Promise<Mock
         };
     }
 
+    if (url === '/api/join' && options.method === 'POST') {
+        const body = JSON.parse(options.body as string);
+        const { email, password } = body;
+
+        // Backend validation simulation
+        if (!email || !email.includes('@')) {
+            return {
+                ok: false,
+                status: 400,
+                json: async () => ({ message: "Invalid email format" })
+            };
+        }
+
+        if (!password || password.length < 8) {
+            return {
+                ok: false,
+                status: 400,
+                json: async () => ({ message: "Password must be at least 8 characters" })
+            };
+        }
+
+        // Success path
+        return {
+            ok: true,
+            status: 201, // Created
+            json: async () => ({
+                token: "fake-jwt-token-joined-789",
+                user: {
+                    email,
+                    name: "New Recruit"
+                }
+            })
+        };
+    }
+
     return {
         ok: false,
         status: 404,

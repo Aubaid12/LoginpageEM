@@ -2,6 +2,7 @@
   "name": "evil-martians-login",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://aubaid12.github.io/LoginpageEM/",
   "type": "module",
   "scripts": {
     "dev": "vite",

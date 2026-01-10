@@ -7,16 +7,49 @@
   padding: var(--space-4);
   position: relative;
   overflow: hidden;
+  background-color: var(--color-bg-root);
 }
 
 .background-glow {
   position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(220, 53, 69, 0.15) 0%, rgba(14, 16, 23, 0) 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 50%;
+  background-color: #f7fafc;
+  /* Matches root but let's make it the diagonal strip */
+  /* Actually, for Stripe Style, let's do a simple diagonal background on the container itself or a pseudo-element if needed.
+     But keeping it simple and clean as per reference image which shows a white card on a very light grey background.
+     The reference image 0 has a white card on white/light grey. 
+     Reference image 1 has a gradient background (colorful).
+     
+     User provided TWO images. 
+     Image 0: Register - Clean white card on white.
+     Image 1: Login - Colorful gradient background. 
+     
+     "see how login and join routes are designed"
+     Login -> Colorful Gradient (Image 1)
+     Join -> Clean White (Image 0)
+     
+     This implies I might need different layouts? 
+     But the user said "is every route using same features".
+     
+     I will stick to a clean, subtle background for now to be safe and consistent, 
+     or maybe a subtle gradient. 
+     Let's remove the "GLOW" (red) and replace with a subtle slanted strip or just clean.
+     Given "Zero UI Libraries" and "Simple", I'll go with a subtle slanted background to be "Stripe-like" without over-engineering.
+  */
+  background: linear-gradient(150deg, #53f 15%, #05d5ff 70%, #a6ffcb 94%);
+  /* This matches the colorful login image (Image 1) somewhat? */
+  /* Wait, Image 1 has a purple/pink/blue gradient. */
+  /* Let's try to match Image 1 for the "background" vibe if possible, or just clean. */
+  /* Clean is safer for "professional". But Image 1 IS colorful. */
+  /* I'll use a subtle rotated background element. */
+
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: skewY(-6deg);
+  transform-origin: top left;
+  height: 500px;
   z-index: -1;
-  pointer-events: none;
+  opacity: 0.8;
 }

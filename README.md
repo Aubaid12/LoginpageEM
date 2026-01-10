@@ -71,7 +71,7 @@ I built this SPA from scratch using React and TypeScript, without any UI librari
 - **Accessibility:** Using semantic HTML, `aria-invalid` states, and keyboard navigation support.
 - **UX:** Smooth animations, clear error feedback, and loading states.
 - **Architecture:** Clean component separation (`LoginForm`, `Input`, `Button`) and a mock API layer (`mockFetch`) that simulates latency and network errors.
-- **Design:** A custom "Martian" theme using CSS variables and glassmorphism.
+- **Design:** A custom "Clean" theme inspired by modern payment platforms, using CSS variables and glassmorphism.
 
 **About Me**
 I am a [Your Role, e.g., Senior Frontend Engineer] with a passion for building robust developer tools. At [Previous Company], I led the migration of our core dashboard to a micro-frontend architecture, reducing build times by 40% and improving team velocity.
