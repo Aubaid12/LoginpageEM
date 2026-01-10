@@ -1,6 +1,6 @@
 # Evil Martians Login Assignment
 
-> **Live Demo:** [Insert Your GitHub Pages Link Here]
+> **Live Demo:** [https://Aubaid12.github.io/LoginpageEM/](https://Aubaid12.github.io/LoginpageEM/)
 
 A high-quality, accessible, and zero-dependency Login SPA built for the Evil Martians Frontend Engineer application.
 
@@ -18,7 +18,7 @@ This project was built with a focus on **fundamentals over frameworks**, mimicki
 *   **Testing**: Vitest, React Testing Library
 *   **Tooling**: Vite
 
-## � Local Development
+## 🚀 Local Development
 
 1.  **Install Dependencies**
     ```bash
@@ -56,15 +56,15 @@ This project is configured for one-command deployment.
 
 ***
 
-**Subject:** [Your Full Name] - Frontend Engineer Application
+**Subject:** Aubaid - Frontend Engineer Application
 
 Hi Evil Martians Team,
 
 Here is my submission for the Frontend Engineer position.
 
 **Login Form SPA**
-- **Live Demo:** [Insert GitHub Pages Link Here]
-- **Source Code:** [Insert GitHub Repo Link Here]
+- **Live Demo:** [https://Aubaid12.github.io/LoginpageEM/](https://Aubaid12.github.io/LoginpageEM/)
+- **Source Code:** [https://github.com/Aubaid12/LoginpageEM](https://github.com/Aubaid12/LoginpageEM)
 
 **Approach:**
 I built this SPA from scratch using React and TypeScript, without any UI libraries. I focused on:
