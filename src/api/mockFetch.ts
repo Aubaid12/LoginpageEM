@@ -22,31 +22,26 @@ export const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, 
  * - 400 Bad Request for invalid email format (backend validation simulation)
  * - 500 Network Error (random 5% chance)
  */
+// Simple in-memory mock database
+const registeredUsers: Record<string, { password: string; name: string }> = {};
+
 export async function mockFetch(url: string, options: RequestInit): Promise<MockResponse<any>> {
-    // Simulate network latency
     const latency = 500 + Math.random() * 1000;
     await delay(latency);
 
-    // Random network failure (5% chance)
-    if (Math.random() < 0.05) {
-        throw new Error("Network Error: Failed to fetch");
-    }
+    if (Math.random() < 0.05) throw new Error("Network Error: Failed to fetch");
 
     if (url === '/api/login' && options.method === 'POST') {
-        const body = JSON.parse(options.body as string);
-        const { email, password } = body;
+        const { email, password } = JSON.parse(options.body as string);
 
-        // Backend validation simulation
         if (!email || !email.includes('@')) {
-            return {
-                ok: false,
-                status: 400,
-                json: async () => ({ message: "Invalid email format" })
-            };
+            return { ok: false, status: 400, json: async () => ({ message: "Invalid email format" }) };
         }
 
-        // Success path (Hardcoded for demo)
-        if (password === 'password') {
+        // Check against "DB" first, then fallback to hardcoded demo user
+        const storedUser = registeredUsers[email];
+
+        if ((storedUser && storedUser.password === password) || (!storedUser && password === 'password')) {
             return {
                 ok: true,
                 status: 200,
@@ -54,59 +49,37 @@ export async function mockFetch(url: string, options: RequestInit): Promise<Mock
                     token: "fake-jwt-token-123456",
                     user: {
                         email,
-                        name: "Martian User"
+                        name: storedUser ? storedUser.name : "Martian User"
                     }
                 })
             };
         }
 
-        // Auth failure
-        return {
-            ok: false,
-            status: 401,
-            json: async () => ({ message: "Invalid credentials" })
-        };
+        return { ok: false, status: 401, json: async () => ({ message: "Invalid credentials" }) };
     }
 
     if (url === '/api/join' && options.method === 'POST') {
-        const body = JSON.parse(options.body as string);
-        const { email, fullName, password } = body;
+        const { email, fullName, password } = JSON.parse(options.body as string);
 
-        // Backend validation simulation
         if (!email || !email.includes('@')) {
-            return {
-                ok: false,
-                status: 400,
-                json: async () => ({ message: "Invalid email format" })
-            };
+            return { ok: false, status: 400, json: async () => ({ message: "Invalid email format" }) };
         }
-
         if (!fullName) {
-            return {
-                ok: false,
-                status: 400,
-                json: async () => ({ message: "Full name is required" })
-            };
+            return { ok: false, status: 400, json: async () => ({ message: "Full name is required" }) };
         }
-
         if (!password || password.length < 8) {
-            return {
-                ok: false,
-                status: 400,
-                json: async () => ({ message: "Password must be at least 8 characters" })
-            };
+            return { ok: false, status: 400, json: async () => ({ message: "Password must be at least 8 characters" }) };
         }
 
-        // Success path
+        // Save to "DB"
+        registeredUsers[email] = { password, name: fullName };
+
         return {
             ok: true,
-            status: 201, // Created
+            status: 201,
             json: async () => ({
                 token: "fake-jwt-token-joined-789",
-                user: {
-                    email,
-                    name: fullName
-                }
+                user: { email, name: fullName }
             })
         };
     }
